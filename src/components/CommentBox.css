@@ -1,0 +1,14 @@
+.comment-box-form {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.comment-box-form > * {
+  margin-bottom: 1rem;
+}
+
+.comment-box {
+  padding: 0.5rem 1rem;
+}

@@ -1,4 +1,5 @@
 import './App.css';
+import CommentBox from './components/CommentBox';
 
 function App() {
   return (
@@ -6,7 +7,7 @@ function App() {
       <header className="App-header">
         <h1>Hyphothesis commentBox Task</h1>
       </header>
-      <div>hello!</div>
+      <CommentBox />
     </div>
   );
 }
