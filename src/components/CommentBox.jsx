@@ -7,11 +7,11 @@ import useFakeData from '../hooks/useFakeData';
 
 const CommentBox = () => {
   const [text, setText] = useState('');
-  const [updatedText, setUpdatedText] = useState('');
   const [textPos, setTextPos] = useState(null);
   const [userQuery, setUserQuery] = useState('');
   const [users, setUsers] = useState([]);
   const { setQuery, data, error } = useFakeData();
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     // Simple debounce function to avoid hitting the service too much
@@ -58,15 +58,21 @@ const CommentBox = () => {
       .slice(0, -1)
       .concat([selectedText])
       .join(' ');
-    setUpdatedText(newText);
+    setText(newText);
     setUsers([]);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    setMessages(prevState => [...prevState, text]);
+    setText('');
   };
 
   return (
     <>
-      <form className="comment-box-form">
-        <EditableDiv text={updatedText} onDivContentChange={updateDivData} />
-        <input type="submit" value="Add Comment" />
+      <form id="comment-box-form" onSubmit={handleSubmit}>
+        <EditableDiv text={text} onDivContentChange={updateDivData} />
+        <input id="comment-box-form-btn" type="submit" value="Add Comment" />
       </form>
 
       {textPos && users.length > 0 && (
@@ -76,6 +82,18 @@ const CommentBox = () => {
           onSelectedItemChange={selectUserFromList}
         />
       )}
+
+      <div id="comments">
+        {messages.length === 0 ? (
+          <div className="comments-info">No messages yet</div>
+        ) : (
+          <ul id="comments-list">
+            {messages.map((message, index) => (
+              <li key={`${index}${message}`}>{message}</li>
+            ))}
+          </ul>
+        )}
+      </div>
     </>
   );
 };

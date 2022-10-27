@@ -4,4 +4,5 @@
   text-align: left;
   height: 100px;
   overflow: auto;
+  border-radius: 5px;
 }
