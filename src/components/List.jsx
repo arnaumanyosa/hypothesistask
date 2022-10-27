@@ -1,5 +1,7 @@
 import './List.css';
 
+// List elements related to another component
+// (like a dropdown button, etc)
 const List = ({ pos, items, onSelectedItemChange }) => {
   const clickHandler = event => {
     onSelectedItemChange(event.target.textContent.split(' ')[0]);

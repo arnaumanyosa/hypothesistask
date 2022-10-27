@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import { useEffect } from 'react';
 import './EditableDiv.css';
 
+// Creates a div that can be used as an input element,
+// similar as a Textarea
 const EditableDiv = ({ text, onDivContentChange }) => {
   const editableDivRef = useRef();
 
@@ -14,6 +16,7 @@ const EditableDiv = ({ text, onDivContentChange }) => {
   const inputHandler = event => {
     onDivContentChange(event.target);
   };
+
   return (
     <div
       id="editable-div-box"

@@ -4,6 +4,7 @@ export const IDLE_STATUS = 'idle';
 export const FETCHING_STATUS = 'fetching';
 export const FINISHED_STATUS = 'finished';
 
+// Serves the user.json file like a service
 const useFakeData = () => {
   const [status, setStatus] = useState(IDLE_STATUS);
   const [query, setQuery] = useState('');

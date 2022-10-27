@@ -5,6 +5,8 @@ import EditableDiv from './EditableDiv';
 import List from './List';
 import useFakeData from '../hooks/useFakeData';
 
+// This component includes a form with an input box and a button,
+// and a list of the comments done
 const CommentBox = () => {
   const [text, setText] = useState('');
   const [textPos, setTextPos] = useState(null);
