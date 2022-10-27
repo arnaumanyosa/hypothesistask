@@ -7,7 +7,9 @@ function App() {
       <header className="App-header">
         <h1>Hyphothesis commentBox Task</h1>
       </header>
-      <CommentBox />
+      <section>
+        <CommentBox />
+      </section>
     </div>
   );
 }
