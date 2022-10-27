@@ -6,6 +6,8 @@ const EditableDiv = ({ text, onDivContentChange }) => {
   const editableDivRef = useRef();
 
   useEffect(() => {
+    //When the user selects another one from the list
+    //the text needs to be updated correctly
     editableDivRef.current.textContent = text;
   }, [text]);
 

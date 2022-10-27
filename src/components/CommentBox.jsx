@@ -3,8 +3,7 @@ import { useState } from 'react';
 import './CommentBox.css';
 import EditableDiv from './EditableDiv';
 import List from './List';
-
-const userList = ['Cristina', 'Christina', 'Cristiano', 'Cristian'];
+import useFakeData from '../hooks/useFakeData';
 
 const CommentBox = () => {
   const [text, setText] = useState('');
@@ -12,13 +11,31 @@ const CommentBox = () => {
   const [textPos, setTextPos] = useState(null);
   const [userQuery, setUserQuery] = useState('');
   const [users, setUsers] = useState([]);
+  const { setQuery, data, error } = useFakeData();
 
   useEffect(() => {
-    if (userQuery.length > 2) setUsers(userList);
-    else setUsers([]);
-  }, [userQuery]);
+    // Simple debounce function to avoid hitting the service too much
+    const debounceSetQuery = setTimeout(() => {
+      setQuery(userQuery);
+    }, 100);
+
+    return () => {
+      clearTimeout(debounceSetQuery);
+      setUsers([]);
+    };
+  }, [userQuery, setQuery]);
 
   useEffect(() => {
+    const userList = data.map(item => `${item.username} (${item.name})`);
+    setUsers(userList);
+  }, [data]);
+
+  useEffect(() => {
+    if (error.length > 0) console.log(error);
+  }, [error]);
+
+  useEffect(() => {
+    // User can tag another's by typing @ first
     if (text.includes('@')) {
       const userQuery = text.split('@').pop();
       setUserQuery(userQuery);
@@ -29,13 +46,13 @@ const CommentBox = () => {
     // Get the text
     setText(element.textContent);
 
-    // Get the rect
+    // Get the position of the cursor
     const cursorRange = document.getSelection().getRangeAt(0);
     const cursorRect = cursorRange.getBoundingClientRect();
     setTextPos({ left: cursorRect.left, top: cursorRect.top });
   };
 
-  const updateText = selectedText => {
+  const selectUserFromList = selectedText => {
     const newText = text
       .split('@')
       .slice(0, -1)
@@ -55,8 +72,8 @@ const CommentBox = () => {
       {textPos && users.length > 0 && (
         <List
           pos={textPos}
-          items={userList}
-          onSelectedItemChange={updateText}
+          items={users}
+          onSelectedItemChange={selectUserFromList}
         />
       )}
     </>

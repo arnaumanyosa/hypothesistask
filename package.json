@@ -37,6 +37,7 @@
   "devDependencies": {
     "eslint": "^8.26.0",
     "eslint-config-react-app": "^7.0.1",
+    "msw": "^0.47.4",
     "prettier": "^2.7.1"
   }
 }

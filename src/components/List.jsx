@@ -2,7 +2,7 @@ import './List.css';
 
 const List = ({ pos, items, onSelectedItemChange }) => {
   const clickHandler = event => {
-    onSelectedItemChange(event.target.textContent);
+    onSelectedItemChange(event.target.textContent.split(' ')[0]);
   };
 
   return (

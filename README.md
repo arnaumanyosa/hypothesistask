@@ -23,3 +23,18 @@ Builds the app for production to the `build` folder.\
 
 - Use contenteditable innerHTML to manage its content instead of working with the whole textContent
 - use styled Components or similar for the styling
+- add the messages to a list
+- list:
+  - possibility to close the popup list (click outside, esc...)
+  - possibility to use arrow keys, enter, etc
+- styling
+  - highlight usernames in the text
+  - highlight the part of the name on the list of users obtained
+  - add comment button
+- useFakeData hook:
+  - use status (for loading animation)
+- check npm build is working
+
+### Bugs
+
+- As we use @ to tag users, this will give problems if user types an email, twitter user, etc
